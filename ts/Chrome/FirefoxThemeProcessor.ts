@@ -92,18 +92,23 @@ export class FirefoxThemeProcessor implements IThemeProcessor
                                         .changeColor(RgbaColor.White, false, document.body);
 
                                 const theme: browser._manifest.ThemeType = { colors: {} };
+                                const newTheme = Object.assign({}, theme, theme.colors ? { colors: theme.colors } : {});
                                 if (mainVersion < 59)
                                 {
-                                    Object.assign(theme.colors, {
-                                        accentcolor: darkBgColor.color!,
-                                        textcolor: darkTextColor.color!
-                                    });
+                                    if (newTheme.colors) {
+                                        Object.assign(newTheme.colors, {
+                                            accentcolor: darkBgColor.color!,
+                                            textcolor: darkTextColor.color!
+                                        });
+                                    }
 
                                     if (mainVersion >= 57)
                                     {
-                                        Object.assign(theme.colors, {
-                                            toolbar_text: lightTextColor.color,
-                                        });
+                                        if (newTheme.colors) {
+                                            Object.assign(newTheme.colors, {
+                                                toolbar_text: lightTextColor.color,
+                                            });
+                                        }
                                     }
                                 }
                                 if (mainVersion < 60)
@@ -114,71 +119,83 @@ export class FirefoxThemeProcessor implements IThemeProcessor
                                 }
                                 if (mainVersion >= 57)
                                 {
-                                    Object.assign(theme.colors, {
-                                        toolbar: buttonColor.color,
-                                        toolbar_field: midBgColor.color,
-                                        toolbar_field_text: midTextColor.color
-                                    });
+                                    if (newTheme.colors) {
+                                        Object.assign(newTheme.colors, {
+                                            toolbar: buttonColor.color,
+                                            toolbar_field: midBgColor.color,
+                                            toolbar_field_text: midTextColor.color
+                                        });
+                                    }
                                 }
                                 if (mainVersion >= 58)
                                 {
-                                    Object.assign(theme.colors, {
-                                        toolbar_bottom_separator: lightBorderColor.color,
-                                        toolbar_top_separator: darkBorderColor.color,
-                                        toolbar_vertical_separator: darkBorderColor.color
-                                    });
+                                    if (newTheme.colors) {
+                                        Object.assign(newTheme.colors, {
+                                            toolbar_bottom_separator: lightBorderColor.color,
+                                            toolbar_top_separator: darkBorderColor.color,
+                                            toolbar_vertical_separator: darkBorderColor.color
+                                        });
+                                    }
                                 }
                                 if (mainVersion >= 59)
                                 {
-                                    Object.assign(theme.colors, {
-                                        frame: darkBgColor.color!,
-                                        bookmark_text: lightTextColor.color,
-                                        tab_background_text: darkTextColor.color!,
-                                        toolbar_field_border: midBorderColor.color,
-                                        toolbar_field_separator: darkBorderColor.color
-                                    });
+                                    if (newTheme.colors) {
+                                        Object.assign(newTheme.colors, {
+                                            frame: darkBgColor.color!,
+                                            bookmark_text: lightTextColor.color,
+                                            tab_background_text: darkTextColor.color!,
+                                            toolbar_field_border: midBorderColor.color,
+                                            toolbar_field_separator: darkBorderColor.color
+                                        });
+                                    }
                                 }
                                 if (mainVersion >= 60)
                                 {
-                                    Object.assign(theme.colors, {
-                                        button_background_hover: buttonHoverColor.color,
-                                        button_background_active: buttonActiveColor.color,
+                                    if (newTheme.colors) {
+                                        Object.assign(newTheme.colors, {
+                                            button_background_hover: buttonHoverColor.color,
+                                            button_background_active: buttonActiveColor.color,
 
-                                        tab_line: linkColor.color,
-                                        tab_loading: linkColor.color,
+                                            tab_line: linkColor.color,
+                                            tab_loading: linkColor.color,
 
-                                        icons_attention: visitedLinkColor.color,
+                                            icons_attention: visitedLinkColor.color,
 
-                                        popup: midBgColor.color,
-                                        popup_text: midTextColor.color,
-                                        popup_border: midBorderColor.color
-                                    });
+                                            popup: midBgColor.color,
+                                            popup_text: midTextColor.color,
+                                            popup_border: midBorderColor.color
+                                        });
+                                    }
                                 }
                                 if (mainVersion >= 63)
                                 {
-                                    Object.assign(theme.colors, {
-                                        ntp_background: mainBgColor.color,
-                                        ntp_text: mainTextColor.color
-                                    });
+                                    if (newTheme.colors) {
+                                        Object.assign(newTheme.colors, {
+                                            ntp_background: mainBgColor.color,
+                                            ntp_text: mainTextColor.color
+                                        });
+                                    }
                                 }
                                 if (mainVersion >= 64)
                                 {
-                                    Object.assign(theme.colors, {
-                                        sidebar: buttonColor.color,
-                                        sidebar_highlight: buttonActiveColor.color,
-                                        sidebar_highlight_text: activeTextColor.color,
-                                        sidebar_text: lightTextColor.color,
-                                        sidebar_border: darkBorderColor.color
-                                    });
+                                    if (newTheme.colors) {
+                                        Object.assign(newTheme.colors, {
+                                            sidebar: buttonColor.color,
+                                            sidebar_highlight: buttonActiveColor.color,
+                                            sidebar_highlight_text: activeTextColor.color,
+                                            sidebar_text: lightTextColor.color,
+                                            sidebar_border: darkBorderColor.color
+                                        });
+                                    }
                                 }
-                                console.log(theme);
+                                console.log(newTheme);
                                 if (wnd.id !== undefined)
                                 {
-                                    browser.theme.update(wnd.id, theme);
+                                    browser.theme.update(wnd.id, newTheme);
                                 }
                                 else
                                 {
-                                    browser.theme.update(theme);
+                                    browser.theme.update(newTheme);
                                 }
                             }
                             else
