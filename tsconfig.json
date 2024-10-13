@@ -1,27 +1,28 @@
 {
-    "compilerOptions": {
-        "strict": true,
-        "pretty": true,
-        "outDir": "./js/",
-        "removeComments": true,
-        "strictNullChecks": true,
-        "noImplicitAny": true,
-        "module": "es6",
-        "target": "es6",
-        "sourceMap": true,
-        "noImplicitReturns": true,
-        "noEmitOnError": true,
-        "noImplicitThis": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "skipDefaultLibCheck": true,
-        "skipLibCheck": true,
-        "alwaysStrict": true,
-        "importHelpers": true,
-        "moduleResolution": "node",
-        "lib": [
-            "es2017",
-            "dom"
-        ]
-    }
+  "compilerOptions": {
+    "strict": false,
+    "pretty": true,
+    "outDir": "./js/",
+    "removeComments": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "module": "ESNext",
+    "target": "ES2020",
+    "sourceMap": true,
+    "noImplicitReturns": true,
+    "noEmitOnError": true,
+    "noImplicitThis": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "alwaysStrict": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "lib": ["ES2020", "dom"],
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["ts/**/*.ts", "ts/**/*.tsx"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }
